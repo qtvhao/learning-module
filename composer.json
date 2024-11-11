@@ -1,0 +1,15 @@
+{
+    "name": "qtvhao/learning-module",
+    "autoload": {
+        "psr-4": {
+            "Qtvhao\\LearningModule\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Hao Nghiem",
+            "email": "qtvhao@gmail.com"
+        }
+    ],
+    "require": {}
+}
