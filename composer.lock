@@ -4,12 +4,65 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "faa38df1a712ac46f64bd3ffe98dba47",
-    "packages": [],
+    "content-hash": "ecbb5c4cc8d29e6f4c3cde0476b36d4f",
+    "packages": [
+        {
+            "name": "qtvhao/device-access-control",
+            "version": "dev-main",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/qtvhao/device-access-control.git",
+                "reference": "ee9480e51b18d1111f29478363643c886905b581"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/qtvhao/device-access-control/zipball/ee9480e51b18d1111f29478363643c886905b581",
+                "reference": "ee9480e51b18d1111f29478363643c886905b581",
+                "shasum": ""
+            },
+            "require-dev": {
+                "illuminate/http": "^11.30",
+                "mockery/mockery": "^1.6",
+                "phpunit/phpunit": "^11.4"
+            },
+            "default-branch": true,
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Qtvhao\\DeviceAccessControl\\DeviceAccessControlServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Qtvhao\\DeviceAccessControl\\": "src"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "Qtvhao\\DeviceAccessControl\\Tests\\": "tests"
+                }
+            },
+            "authors": [
+                {
+                    "name": "Hao Nghiem",
+                    "email": "qtvhao@gmail.com"
+                }
+            ],
+            "support": {
+                "source": "https://github.com/qtvhao/device-access-control/tree/main",
+                "issues": "https://github.com/qtvhao/device-access-control/issues"
+            },
+            "time": "2024-11-12T03:59:31+00:00"
+        }
+    ],
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "qtvhao/device-access-control": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],

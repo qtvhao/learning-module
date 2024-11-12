@@ -11,5 +11,13 @@
             "email": "qtvhao@gmail.com"
         }
     ],
-    "require": {}
+    "require": {
+        "qtvhao/device-access-control": "dev-main"
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/qtvhao/device-access-control"
+        }
+    ]
 }
