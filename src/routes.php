@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Qtvhao\LearningModule\Controllers\LearningController;
 
-Route::prefix('api/learning')
+Route::prefix('learning')
     ->middleware([
         'web',
         'device.access'
