@@ -10,7 +10,6 @@
         <div class="mb-6">
             <h3 class="text-xl font-semibold mb-2">Articles</h3>
             <ul>
-                <!-- Sử dụng @{{ article.title }} thay cho {{ article.title }} -->
                 <li v-for="article in articles" :key="article.id" class="mb-2">
                     <p class="text-gray-800">@{{ article.title }}</p>
                 </li>
@@ -21,7 +20,6 @@
         <div>
             <h3 class="text-xl font-semibold mb-2">Videos</h3>
             <ul>
-                <!-- Sử dụng @{{ video.title }} thay cho {{ video.title }} -->
                 <li v-for="video in videos" :key="video.id" class="mb-2">
                     <p class="text-gray-800">@{{ video.title }}</p>
                 </li>
@@ -40,23 +38,32 @@
                 videos: []
             },
             created() {
-                // Gọi API để lấy danh sách articles
-                axios.get('/api/learning/articles')
-                    .then(response => {
-                        this.articles = response.data;
-                    })
-                    .catch(error => {
-                        console.error('Error fetching articles:', error);
-                    });
+                // Lấy token từ localStorage
+                const token = localStorage.getItem('token');
+                if (token) {
+                    // Thiết lập header Authorization cho tất cả các request của Axios
+                    axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+                    // Gọi API để lấy danh sách articles
+                    axios.get('/api/learning/articles')
+                        .then(response => {
+                            this.articles = response.data;
+                        })
+                        .catch(error => {
+                            console.error('Error fetching articles:', error);
+                        });
 
-                // Gọi API để lấy danh sách videos
-                axios.get('/api/learning/videos')
-                    .then(response => {
-                        this.videos = response.data;
-                    })
-                    .catch(error => {
-                        console.error('Error fetching videos:', error);
-                    });
+                    // Gọi API để lấy danh sách videos
+                    axios.get('/api/learning/videos')
+                        .then(response => {
+                            this.videos = response.data;
+                        })
+                        .catch(error => {
+                            console.error('Error fetching videos:', error);
+                        });
+                } else {
+                    // Thông báo khi không tìm thấy token
+                    window.location.href = '/login'; // Điều hướng về trang đăng nhập
+                }
             }
         });
     </script>
