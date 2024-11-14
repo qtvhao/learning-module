@@ -32,7 +32,6 @@
     </div>
 </div>
 
-<!-- Import Vue và Axios -->
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
@@ -41,37 +40,41 @@
         data: {
             articles: [],
             videos: [],
-            errorMessage: ''  // Biến để lưu thông báo lỗi
+            errorMessage: ''
         },
         created() {
-            // Lấy token từ localStorage
-            const token = localStorage.getItem('token');
-            if (token) {
-                // Thiết lập header Authorization cho tất cả các request của Axios
-                axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-                // Gọi API để lấy danh sách articles
-                axios.get('/api/learning/articles')
-                    .then(response => {
-                        this.articles = response.data.articles;
-                    })
-                    .catch(error => {
-                        console.error('Error fetching articles:', error.response.data);
-                        this.errorMessage = error.response.data;
-                    });
+            this.fetchData();
+        },
+        methods: {
+            async fetchData() {
+                // Lấy token từ localStorage
+                const token = localStorage.getItem('token');
+                if (token) {
+                    axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+                    try {
+                        const articlesResponse = await axios.get('/api/learning/articles');
+                        this.articles = articlesResponse.data.articles;
 
-                // Gọi API để lấy danh sách videos
-                axios.get('/api/learning/videos')
-                    .then(response => {
-                        this.videos = response.data.videos;
-                    })
-                    .catch(error => {
-                        console.error('Error fetching videos:', error.response.data);
+                        const videosResponse = await axios.get('/api/learning/videos');
+                        this.videos = videosResponse.data.videos;
+                    } catch (error) {
+                        console.error('Error fetching data:', error.response.data);
                         this.errorMessage = error.response.data;
-                    });
-            } else {
-                // Thông báo khi không tìm thấy token
-                this.errorMessage = 'Authorization token not found. Please log in again.';
-                setTimeout(() => window.location.href = '/login', 5_000);  // Điều hướng về trang đăng nhập sau 2 giây
+                        if (this.errorMessage === "Vượt quá giới hạn thiết bị truy cập") {
+                            console.log('Giới hạn thiết bị truy cập');
+                            console.log('Hệ thống phát hiện một thiết bị trùng lặp. Vui lòng vào phần quản lý thiết bị để kiểm tra');
+                            // Giới hạn thiết bị truy cập
+                            // Hệ thống phát hiện một thiết bị trùng lặp. Vui lòng vào phần quản lý thiết bị để kiểm tra
+                            // Đã hiểu
+                            // Đã hiểu: Hệ thống giữ nguyên ở trang trước đó, không xử lý gì
+                            // Quản lý thiết bị
+                            // Quản lý thiết bị: Hệ thống chuyển đến tab Quản lý thiết bị
+                        }
+                    }
+                } else {
+                    this.errorMessage = 'Authorization token not found. Please log in again.';
+                    setTimeout(() => window.location.href = '/login', 5_000);
+                }
             }
         }
     });
