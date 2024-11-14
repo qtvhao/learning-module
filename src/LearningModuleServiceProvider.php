@@ -9,7 +9,7 @@ class LearningModuleServiceProvider extends ServiceProvider
     public function boot()
     {
         // Load routes cho module
-        $this->loadRoutesFrom(__DIR__ . '/routes.php');
+        $this->loadRoutesFrom(__DIR__ . '/../routes.php');
         
         // Load migrations nếu cần
         // $this->loadMigrationsFrom(__DIR__ . '/database/migrations');
