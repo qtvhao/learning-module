@@ -3,7 +3,7 @@
 @section('title', 'Learning')
 
 @section('content')
-<div id="learning-app" class="max-w-2xl mx-auto bg-white p-8 border border-gray-300 shadow-lg rounded-lg">
+<div id="learning-app" class="max-w-2xl mx-auto bg-white p-8 border border-gray-300 shadow-lg rounded-lg" style="min-height: 600px">
     <h2 class="text-2xl font-bold mb-6 text-center text-blue-600">Learning Content</h2>
 
     <!-- Thông báo lỗi -->
