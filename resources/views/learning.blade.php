@@ -9,6 +9,12 @@
     <!-- Thông báo lỗi -->
     <div v-if="errorMessage" class="mb-4 p-4 bg-red-100 text-red-700 rounded">
         @{{ errorMessage }}
+        <div class="mt-4">
+            <!-- Nút Đã hiểu -->
+            <button class="bg-white hover:bg-gray-200 text-blue-500 font-bold py-2 px-4 rounded border border-blue-500" @click="errorMessage = ''">Đã hiểu</button>
+            <!-- Nút Quản lý thiết bị -->
+            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" @click="window.location.href = '/device-management'">Quản lý thiết bị</button>
+        </div>
     </div>
 
     <!-- Danh sách Articles -->
@@ -65,6 +71,7 @@
                             console.log('Hệ thống phát hiện một thiết bị trùng lặp. Vui lòng vào phần quản lý thiết bị để kiểm tra');
                             // Giới hạn thiết bị truy cập
                             // Hệ thống phát hiện một thiết bị trùng lặp. Vui lòng vào phần quản lý thiết bị để kiểm tra
+                            this.errorMessage = 'Hệ thống phát hiện một thiết bị trùng lặp. Vui lòng vào phần quản lý thiết bị để kiểm tra';
                             // Đã hiểu
                             // Đã hiểu: Hệ thống giữ nguyên ở trang trước đó, không xử lý gì
                             // Quản lý thiết bị
